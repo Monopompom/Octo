@@ -66,7 +66,7 @@ class LoginController extends Controller {
                 'email'    => $email,
                 'password' => $password
             ]
-            , $remember == 1 ? true : false
+            , $remember == "on" ? true : false
         );
 
         if ($user && $is_attempt_successful) {
