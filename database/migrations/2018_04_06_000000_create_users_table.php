@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration {
 
             $table->string('status', 20)->default('not_confirmed');
 
-            $table->integer('organisation_id')->nullable();
+            $table->integer('organization_id')->nullable();
 
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();

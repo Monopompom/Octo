@@ -100,7 +100,6 @@ class LoginController extends Controller {
      * Validate the user login request.
      *
      * @param  \Illuminate\Http\Request $request
-     *
      * @param   User                    $user
      *
      * @return void
