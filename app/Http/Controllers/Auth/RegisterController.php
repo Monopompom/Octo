@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Traits\ReCaptchaTrait;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,7 +21,7 @@ class RegisterController extends Controller {
     |
     */
 
-    use RegistersUsers;
+    use RegistersUsers, ReCaptchaTrait;
 
     /**
      * Where to redirect users after registration.
@@ -46,10 +47,22 @@ class RegisterController extends Controller {
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data) {
-        return Validator::make($data, [
-            'email'    => 'required|string|email|max:150|unique:tbl_octo_users',
-            'password' => 'required|string|min:6',
-        ]);
+        $messages = [];
+        $messages['g-recaptcha-response.required'] = 'Please confirm that you are not a robot';
+        $messages['captcha-verified.min'] = 'Captcha verification failed';
+
+        $data['captcha-verified'] = $this->verifyCaptcha($data['g-recaptcha-response']);
+
+        return Validator::make(
+            $data,
+            [
+                'email'                => 'required|string|email|max:150|unique:tbl_octo_users',
+                'password'             => 'required|string|min:6',
+                'g-recaptcha-response' => 'required',
+                'captcha-verified'     => 'required|min:1'
+            ],
+            $messages
+        );
     }
 
     /**

@@ -1,5 +1,9 @@
 @extends('layouts.base')
 
+@section('head-scripts')
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -11,7 +15,7 @@
                         <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                             {{ csrf_field() }}
 
-                            <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                 <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                                 <div class="col-md-6">
@@ -26,7 +30,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
+                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                 <label for="password" class="col-md-4 control-label">Password</label>
 
                                 <div class="col-md-6">
@@ -41,7 +45,6 @@
                             </div>
 
                             @if ($errors->has('g-recaptcha-response'))
-                                <script src='https://www.google.com/recaptcha/api.js'></script>
                                 <div class="form-group has-error">
                                     <div class="col-md-6 col-md-offset-4">
                                         <div class="g-recaptcha"
