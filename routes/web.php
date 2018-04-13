@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'App\EntryController');
-Route::get('/dashboard', 'App\EntryController');
+Route::get('/', 'App\EntryController')->name('home');
+Route::get('/dashboard', 'App\EntryController')->name('dashboard');
 
 Route::post('/', 'App\EntryController@create')->name('org-create');
 

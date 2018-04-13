@@ -11,8 +11,12 @@
     <title>{{ config('app.name', 'OCTO') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
+    <!-- Head Variable Styles -->
+@yield('head-styles')
+
+<!-- Head Variable Scripts -->
     @yield('head-scripts')
 
 </head>
@@ -40,8 +44,17 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
 
                 <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    &nbsp;
+                <ul class="nav navbar-nav octo-nav-actions">
+                    @auth
+                        <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                        <li><a>Colleagues</a></li>
+                        <li><a>Teams</a></li>
+                        <li><a>Projects</a></li>
+                        <li><a>Issues</a></li>
+                        <li>
+                            <button class="btn btn-primary">Create</button>
+                        </li>
+                    @endauth
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -81,7 +94,9 @@
 </div>
 
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ mix('js/manifest.js') }}"></script>
+<script src="{{ mix('js/vendor.js') }}"></script>
+<script src="{{ mix('js/app.js') }}"></script>
 
 @yield('footer-scripts')
 
