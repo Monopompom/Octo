@@ -12,7 +12,8 @@ require('dotenv').config();
  |
  */
 
-mix.js(
+mix
+.js(
     'resources/assets/js/app.js',
     'public/js'
 )
@@ -20,8 +21,13 @@ mix.js(
     'vue' //TODO Keep order manifest.js -> vendor.js -> app.js -> ...
 ]);
 
-mix.sass(
+mix
+.sass(
     'resources/assets/sass/app.scss',
+    'public/css'
+)
+.sass(
+    'resources/assets/sass/base.scss',
     'public/css'
 );
 

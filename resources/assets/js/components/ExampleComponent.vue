@@ -6,7 +6,7 @@
                     <div class="panel-heading">Example Component</div>
 
                     <div class="panel-body">
-                        I'm an example component!
+                        {{ this.someData['text'] }}
                     </div>
                 </div>
             </div>
@@ -16,8 +16,10 @@
 
 <script>
     export default {
+        props: ['someData'],
         mounted() {
             console.log('Component mounted.');
+            console.log(this.someData);
         }
     };
 </script>

@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/base.css') }}" rel="stylesheet">
 
     <!-- Head Variable Styles -->
 @yield('head-styles')

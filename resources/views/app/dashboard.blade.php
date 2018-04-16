@@ -20,4 +20,7 @@
             </div>
         </div>
     </div>
+
+    <example-component :some-data='{"text":"Here Is The Text For Vue Component Passed Via Blade"}'></example-component>
+
 @endsection
